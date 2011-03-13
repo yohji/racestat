@@ -71,13 +71,13 @@ class MotecLoader(Loader):
                     l = line[1].split(",");
                     i = 0;
                     while (i < len(l)):
-					if (i == 0):
-						n = float(l[i]);
-						self.timelaps.append(n);
-					else:
-						n = float(l[i]) - float(l[i - 1]);
-						self.timelaps.append(n);
-					i += 1;
+			if (i == 0):
+				n = float(l[i]);
+				self.timelaps.append(n);
+			else:
+				n = float(l[i]) - float(l[i - 1]);
+				self.timelaps.append(n);
+			i += 1;
 
             nline += 1;
 
