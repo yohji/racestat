@@ -27,7 +27,7 @@ from app.racestat.models import Raceway;
 from app.racestat.models import Session;
 from app.racestat.models import Lap;
 from app.racestat.models import Data;
-from app.racestat.core.motec import MotecLoader;
+from app.racestat.loader.motec import MotecLoader;
 
 
 def index(request):

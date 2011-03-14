@@ -23,10 +23,10 @@ from time import time;
 
 from django.db import transaction;
 
-from app.racestat.core import Loader;
-from app.racestat.core.models import Session;
-from app.racestat.core.models import Lap;
-from app.racestat.core.models import Data; 
+from app.racestat.loader import Loader;
+from app.racestat.models import Session;
+from app.racestat.models import Lap;
+from app.racestat.models import Data; 
 
 
 class MotecLoader(Loader):
@@ -77,7 +77,7 @@ class MotecLoader(Loader):
 						else:
 							n = float(l[i]) - float(l[i - 1]);
 							self.timelaps.append(n);
-					i += 1;
+						i += 1;
 
 			nline += 1;
 

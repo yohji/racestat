@@ -22,7 +22,7 @@ from unittest2 import TestCase;
 from app.racestat.models import Pilot;
 from app.racestat.models import Vehicle;
 from app.racestat.models import Raceway; 
-from app.racestat.core.motec import MotecLoader;
+from app.racestat.loader.motec import MotecLoader;
 
 
 class TestCaseUnit(TestCase):
