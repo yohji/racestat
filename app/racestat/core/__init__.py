@@ -15,3 +15,16 @@
 #	along with this program; if not, write to the Free Software Foundation,
 #	Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
+
+class Loader():
+
+	pilot = None;
+	vehicle = None;
+	raceway = None;
+	
+	def __init__(self, pilot, vehicle, raceway):
+		
+		self.pilot = pilot;
+		self.vehicle = vehicle;
+		self.raceway = raceway;
+

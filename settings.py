@@ -1,19 +1,19 @@
 #
-#    Copyright (c) 2011 Marco Merli <yohji@marcomerli.net>
+#	Copyright (c) 2011 Marco Merli <yohji@marcomerli.net>
 #
-#    This program is free software; you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation; either version 2 of the License, or
-#    (at your option) any later version.
+#	This program is free software; you can redistribute it and/or modify
+#	it under the terms of the GNU General Public License as published by
+#	the Free Software Foundation; either version 2 of the License, or
+#	(at your option) any later version.
 #
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
+#	This program is distributed in the hope that it will be useful,
+#	but WITHOUT ANY WARRANTY; without even the implied warranty of
+#	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#	GNU General Public License for more details.
 #
-#    You should have received a copy of the GNU General Public License
-#    along with this program; if not, write to the Free Software Foundation,
-#    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#	You should have received a copy of the GNU General Public License
+#	along with this program; if not, write to the Free Software Foundation,
+#	Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
 # Django settings for racestat project.
@@ -22,27 +22,27 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('yohji', 'yohji@marcomerli.net'),
+	('yohji', 'yohji@marcomerli.net'),
 )
 
 MANAGERS = ADMINS
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'data/racestat.db'
-    }
+	'default': {
+		'ENGINE': 'django.db.backends.sqlite3',
+		'NAME': 'data/racestat.db'
+	}
 }
 
 #DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'racestat',
-#        'USER': 'racestat',
-#        'PASSWORD': 'racestat',
-#        'HOST': '127.0.0.1',
-#        'PORT': '5432',
-#    }
+#	'default': {
+#		'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#		'NAME': 'racestat',
+#		'USER': 'racestat',
+#		'PASSWORD': 'racestat',
+#		'HOST': '127.0.0.1',
+#		'PORT': '5432',
+#	}
 #}
 
 # Local time zone for this installation. Choices can be found here:
@@ -87,39 +87,35 @@ SECRET_KEY = '76g$$*d$!-orwvlxo3-cfik^i&316!p(48&k!ez=*(yy%u_*eh'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+	'django.template.loaders.filesystem.Loader',
+	'django.template.loaders.app_directories.Loader',
+#	 'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.transaction.TransactionMiddleware', 
+	'django.middleware.common.CommonMiddleware',
+	'django.contrib.sessions.middleware.SessionMiddleware',
+	'django.middleware.csrf.CsrfViewMiddleware',
+	'django.contrib.auth.middleware.AuthenticationMiddleware',
+	'django.contrib.messages.middleware.MessageMiddleware',
+	'django.middleware.transaction.TransactionMiddleware', 
 )
 
 ROOT_URLCONF = 'racestat.urls'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+	# Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+	# Always use forward slashes, even on Windows.
+	# Don't forget to use absolute paths, not relative paths.
 )
 
 INSTALLED_APPS = (
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.messages',
-    'mod.core',
-    'mod.web',
-    'mod.test'
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+	'django.contrib.auth',
+	'django.contrib.contenttypes',
+	'django.contrib.sessions',
+	'django.contrib.sites',
+	'django.contrib.messages',
+	'django.contrib.admin',
+	'django.contrib.admindocs',
+	'app.racestat'
 )
