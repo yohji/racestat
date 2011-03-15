@@ -22,6 +22,7 @@ from datetime import timedelta;
 from time import time;
 
 from django.db import transaction;
+from django.db import connection;
 
 from app.racestat.loader import Loader;
 from app.racestat.models import Session;
@@ -30,7 +31,7 @@ from app.racestat.models import Data;
 
 
 class MotecLoader(Loader):
-	
+
 	session = None;
 	timelaps = list();
 	datalaps = list();
@@ -38,7 +39,7 @@ class MotecLoader(Loader):
 	clap = None;
 	cidx = 0;
 	cclock = 1;
-	
+
 	def load(self, fcsv):
 		
 		timer = time();
@@ -81,21 +82,19 @@ class MotecLoader(Loader):
 
 			nline += 1;
 
-		print("metadata: %g sec" % (time() - timer));
-		timer = time();
-		
 		self.__write_data();
-		print("data: %g sec" % (time() - timer));
-					 
-		fcsv.close();
+		self.__stat_laps();
 		
+		fcsv.close();
+		print("loaded in %g sec" % (time() - timer));
+
 	def __load_session(self, sdate, stime, sdur):
 		
 		t = sdate + " " + stime;
 		self.session.date = datetime.strptime(t, "%m/%d/%y %H:%M:%S");
 		self.session.duration = timedelta(0, float(sdur));
 		self.session.save();
-	
+
 	def __load_laps(self, line):
 		
 		t = float(line[0]);
@@ -121,7 +120,7 @@ class MotecLoader(Loader):
 		self.datalaps.append(d);
 
 		self.cclock = t;
-		
+
 	@transaction.commit_manually
 	def __write_data(self):
 		
@@ -130,3 +129,24 @@ class MotecLoader(Loader):
 		
 		transaction.commit();
 
+	def __stat_laps(self):
+		
+		cur = connection.cursor();
+		for lap in Lap.objects.filter(session=self.session):
+			
+			sql = "Select Max(distance), Max(speed), Avg(speed), ";
+			sql += "Max(Abs(glat)), Max(Abs(glon)), ";
+			sql += "Avg(gaspedal), Avg(brakepedal), Avg(gear) ";
+			sql += "From racestat_data Where lap_id = %s";
+			cur.execute(sql, [lap.id]);
+			
+			stat = cur.fetchone();
+			lap.distance = float(stat[0]);
+			lap.max_speed = float(stat[1]);
+			lap.avg_speed = float(stat[2]);
+			lap.max_glat = float(stat[3]);
+			lap.max_glon = float(stat[4]);
+			lap.avg_gas = float(stat[5]);
+			lap.avg_brake = float(stat[6]);
+			lap.avg_gear = float(stat[7]);
+			lap.save();

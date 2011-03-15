@@ -20,21 +20,21 @@ from django.db import models
 
 
 class Pilot(models.Model):
-	name = models.CharField(max_length=200);
+	name = models.CharField(max_length=64);
 
 	def __unicode__(self):
 		return self.name;
 
 
 class Raceway(models.Model):
-	name = models.CharField(max_length=200);
+	name = models.CharField(max_length=64);
 
 	def __unicode__(self):
 		return self.name;
 	
 
 class Vehicle(models.Model):
-	name = models.CharField(max_length=200);
+	name = models.CharField(max_length=64);
 
 	def __unicode__(self):
 		return self.name;
@@ -48,15 +48,23 @@ class Session(models.Model):
 	duration = models.TimeField();
 
 	def __unicode__(self):
-		return str(self.date);
+		return "%s" % (self.date);
 
 
 class Lap(models.Model):
 	session = models.ForeignKey(Session);
 	time = models.TimeField();
+	distance = models.FloatField(null=True);
+	max_speed = models.FloatField(null=True);
+	avg_speed = models.FloatField(null=True);
+	max_glat = models.FloatField(null=True);
+	max_glon= models.FloatField(null=True);
+	avg_gas = models.FloatField(null=True);
+	avg_brake = models.FloatField(null=True);
+	avg_gear = models.FloatField(null=True);
 
 	def __unicode__(self):
-		return str(self.time);
+		return "%s|%s" % (self.session, self.time);
 
 
 class Data(models.Model):
@@ -73,5 +81,5 @@ class Data(models.Model):
 	gear = models.FloatField();
 
 	def __unicode__(self):
-		return str(self.time);
+		return "%s|%s" % (self.lap, self.time);
 
