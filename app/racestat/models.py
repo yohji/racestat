@@ -53,6 +53,7 @@ class Session(models.Model):
 
 class Lap(models.Model):
 	session = models.ForeignKey(Session);
+	number = models.IntegerField();
 	time = models.TimeField();
 	distance = models.FloatField(null=True);
 	max_speed = models.FloatField(null=True);
@@ -64,7 +65,7 @@ class Lap(models.Model):
 	avg_gear = models.FloatField(null=True);
 
 	def __unicode__(self):
-		return "%s|%s" % (self.session, self.time);
+		return "%s|%s|%s" % (self.session, self.number, self.time);
 
 
 class Data(models.Model):

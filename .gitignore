@@ -3,5 +3,5 @@
 *.pyc
 
 # Data #
-###################
+########
 data/racestat.db

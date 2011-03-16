@@ -34,12 +34,12 @@ class MotecLoader(Loader):
 
 	session = None;
 	timelaps = list();
-	datalaps = list();
 
 	clap = None;
-	cidx = 0;
+	cnum = 0;
 	cclock = 1;
 
+	@transaction.commit_on_success
 	def load(self, fcsv):
 		
 		timer = time();
@@ -82,10 +82,9 @@ class MotecLoader(Loader):
 
 			nline += 1;
 
-		self.__write_data();
-		self.__stat_laps();
-		
 		fcsv.close();
+		self.__stat_laps();
+
 		print("loaded in %g sec" % (time() - timer));
 
 	def __load_session(self, sdate, stime, sdur):
@@ -101,9 +100,10 @@ class MotecLoader(Loader):
 		if (t < self.cclock):
 			self.clap = Lap();
 			self.clap.session = self.session;
-			self.clap.time = timedelta(0, self.timelaps[self.cidx]);
+			self.clap.number = self.cnum + 1;
+			self.clap.time = timedelta(0, self.timelaps[self.cnum]);
 			self.clap.save();
-			self.cidx += 1;
+			self.cnum += 1;
 			
 		d = Data();
 		d.lap = self.clap;
@@ -117,17 +117,9 @@ class MotecLoader(Loader):
 		d.gaspedal = float(line[7]);
 		d.brakepedal = float(line[8]);
 		d.gear = float(line[9]);
-		self.datalaps.append(d);
+		d.save();
 
 		self.cclock = t;
-
-	@transaction.commit_manually
-	def __write_data(self):
-		
-		for data in self.datalaps:
-			data.save();
-		
-		transaction.commit();
 
 	def __stat_laps(self):
 		
