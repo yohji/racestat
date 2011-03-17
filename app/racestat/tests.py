@@ -38,11 +38,11 @@ class TestCaseUnit(TestCase):
 		self.test_pilot.save();
 		
 		self.test_vehicle = Vehicle();
-		self.test_vehicle.name = "Osella";
+		self.test_vehicle.name = "F3";
 		self.test_vehicle.save();
 		
 		self.test_raceway = Raceway();
-		self.test_raceway.name = "Prato - Full GP";
+		self.test_raceway.name = "Interlagos";
 		self.test_raceway.save();
 
 

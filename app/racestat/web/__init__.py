@@ -15,21 +15,3 @@
 #	along with this program; if not, write to the Free Software Foundation,
 #	Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-
-from django.conf.urls.defaults import *
-from django.contrib import admin
-from django.conf import settings
-admin.autodiscover()
-
-urlpatterns = patterns('app.racestat.web',
-
-	(r'^racestat/$', 'home.index'),
-	(r'^racestat/test$', 'home.test'),
-
-	(r'^admin/', include(admin.site.urls)),
-	(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-)
-
-urlpatterns += patterns('',
-	url(r'^racestat/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_DOC_ROOT, 'show_indexes': True}),
-)

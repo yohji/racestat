@@ -20,6 +20,7 @@ import gzip;
 from time import time;
 
 from django.http import HttpResponse;
+from django.shortcuts import render_to_response;
 
 from app.racestat.models import Pilot;
 from app.racestat.models import Vehicle;
@@ -32,7 +33,7 @@ from app.racestat.loader.motec import MotecLoader;
 
 def index(request):
 
-	return HttpResponse("Racestat is running.. ;)");
+	return render_to_response("home.html");
 
 def test(request):
 	
@@ -52,12 +53,12 @@ def test(request):
 	
 	vehicle = Vehicle();
 	vehicle.id = 1;
-	vehicle.name = "Osella";
+	vehicle.name = "F3";
 	vehicle.save();
 	
 	raceway = Raceway();
 	raceway.id = 1;
-	raceway.name = "Prato - Full GP";
+	raceway.name = "Interlagos";
 	raceway.save();
 
 	motec = MotecLoader(
@@ -69,5 +70,7 @@ def test(request):
 	fcsv = gzip.open(fname);
 	motec.load(fcsv);
 	
-	return HttpResponse("Completed! ;) Time: %g sec" % (time() - timer));
-
+	exec_time = "%g" % (time() - timer);
+	model = {'exec_time': exec_time};
+	
+	return render_to_response("home.html", model);

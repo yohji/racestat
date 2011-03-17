@@ -18,6 +18,8 @@
 
 # Django settings for racestat project.
 
+import os
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -107,7 +109,10 @@ TEMPLATE_DIRS = (
 	# Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
 	# Always use forward slashes, even on Windows.
 	# Don't forget to use absolute paths, not relative paths.
+	os.path.join(os.path.abspath(os.path.dirname(__file__)), 'web/view'),
 )
+
+STATIC_DOC_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'web')
 
 INSTALLED_APPS = (
 	'django.contrib.auth',
