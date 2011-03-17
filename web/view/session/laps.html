@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	{% if lap_list %}
+
+		<script type="text/javascript">
+			$(document).ready(function() { 
+					$("#lap_table").tablesorter(); 
+				}
+			); 
+		</script>
+	
+		<table id="lap_table" class="tablesorter"> 
+			<thead> 
+				<tr> 
+					<th>#</th> 
+					<th>Time</th>
+					<th>Distance</th> 
+					<th>Max speed</th> 
+					<th>Avg speed</th> 
+					<th>Max glat</th> 
+					<th>Max glon</th>  
+					<th>Avg gas</th> 
+					<th>Avg brake</th> 
+					<th>Avg gear</th> 
+				</tr> 
+			</thead> 
+			<tbody> 
+				{% for lap in lap_list %}
+					<tr> 
+						<td>{{ lap.number }}</td>
+						<td>{{ lap.time|time:"i:s.u" }}</td>
+						<td>{{ lap.distance|floatformat:3 }}</td>
+						<td>{{ lap.max_speed|floatformat:3 }}</td>
+						<td>{{ lap.avg_speed|floatformat:3 }}</td>
+						<td>{{ lap.max_glat|floatformat:3 }}</td>
+						<td>{{ lap.max_glon|floatformat:3 }}</td>
+						<td>{{ lap.avg_gas|floatformat:3 }}</td>
+						<td>{{ lap.avg_brake|floatformat:3 }}</td>
+						<td>{{ lap.avg_gear|floatformat:3 }}</td>
+					</tr>
+				{% endfor %}
+			</tbody> 
+		</table> 
+
+	{% else %}
+		<p>No laps are available.</p>
+	{% endif %}
+
+{% endblock %}

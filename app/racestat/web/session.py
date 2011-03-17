@@ -16,23 +16,19 @@
 #	Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-from django.conf.urls.defaults import *
-from django.contrib import admin
-from django.conf import settings
-admin.autodiscover()
+from django.shortcuts import render_to_response;
 
-urlpatterns = patterns('app.racestat.web',
+from app.racestat.models import Session;
+from app.racestat.models import Lap;
 
-	(r'^$', 'home.index'),
-	(r'^session/$', 'session.sessions'),
-	(r'^session/(?P<session_id>\d+)/$', 'session.laps'),
-	(r'^load/$', 'load.show'),
-	(r'^test/$', 'home.test'),
 
-	(r'^admin/', include(admin.site.urls)),
-	(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-)
+def sessions(request):
+	
+	l = Session.objects.all().order_by('-date');
+	return render_to_response("session/sessions.html", {"session_list" : l});
 
-urlpatterns += patterns('',
-	url(r'^(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_DOC_ROOT, 'show_indexes': True}),
-)
+
+def laps(request, session_id):
+	
+	l = Lap.objects.all().filter(session=session_id).order_by('number');
+	return render_to_response("session/laps.html", {"lap_list" : l});

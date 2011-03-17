@@ -120,6 +120,7 @@ INSTALLED_APPS = (
 	'django.contrib.sessions',
 	'django.contrib.sites',
 	'django.contrib.messages',
+	'django.contrib.humanize',
 	'django.contrib.admin',
 	'django.contrib.admindocs',
 	'app.racestat'

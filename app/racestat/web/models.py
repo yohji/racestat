@@ -16,23 +16,13 @@
 #	Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-from django.conf.urls.defaults import *
-from django.contrib import admin
-from django.conf import settings
-admin.autodiscover()
+from django import forms;
 
-urlpatterns = patterns('app.racestat.web',
+from app.racestat.models import Session;
 
-	(r'^$', 'home.index'),
-	(r'^session/$', 'session.sessions'),
-	(r'^session/(?P<session_id>\d+)/$', 'session.laps'),
-	(r'^load/$', 'load.show'),
-	(r'^test/$', 'home.test'),
 
-	(r'^admin/', include(admin.site.urls)),
-	(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-)
-
-urlpatterns += patterns('',
-	url(r'^(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_DOC_ROOT, 'show_indexes': True}),
-)
+class LoadForm(forms.Form):
+	name = forms.CharField(max_length=64);
+	
+	class Meta:
+		model = Session;
