@@ -27,6 +27,7 @@ urlpatterns = patterns('app.racestat.web',
 	(r'^session/$', 'session.sessions'),
 	(r'^session/(?P<session_id>\d+)/$', 'session.laps'),
 	(r'^load/$', 'load.show'),
+	(r'^load/submit/$', 'load.submit'),
 	(r'^test/$', 'home.test'),
 
 	(r'^admin/', include(admin.site.urls)),

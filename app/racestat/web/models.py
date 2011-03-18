@@ -18,11 +18,13 @@
 
 from django import forms;
 
-from app.racestat.models import Session;
+from app.racestat.models import Pilot;
+from app.racestat.models import Raceway;
+from app.racestat.models import Vehicle;
 
 
 class LoadForm(forms.Form):
-	name = forms.CharField(max_length=64);
-	
-	class Meta:
-		model = Session;
+	pilot = forms.ModelChoiceField(queryset=Pilot.objects.all());
+	raceway = forms.ModelChoiceField(queryset=Raceway.objects.all());
+	vehicle = forms.ModelChoiceField(queryset=Vehicle.objects.all());
+	csv  = forms.FileField()

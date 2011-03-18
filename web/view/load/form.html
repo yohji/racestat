@@ -2,12 +2,14 @@
 
 {% block content %}
 
-	{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+	{% if error_message %}
+		<p><strong>{{ error_message }}</strong></p>
+	{% endif %}
 
-	<form action="/load/import/" method="post">
-		{% csrf_token %}
+	<form action="/load/submit/" method="post">{% csrf_token %}
 		<fieldset>
-			{{ form.as_p }}
+			{{ form.as_table }}
+			<br />
 			<input type="submit" value="Save" />
 		</fieldset>
 	</form>
