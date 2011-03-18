@@ -6,11 +6,11 @@
 		<p><strong>{{ error_message }}</strong></p>
 	{% endif %}
 
-	<form action="/load/submit/" method="post">{% csrf_token %}
+	<form action="/load/motec/" method="post" enctype="multipart/form-data">{% csrf_token %}
 		<fieldset>
 			{{ form.as_table }}
 			<br />
-			<input type="submit" value="Save" />
+			<input type="submit" value="Save" class="button" />
 		</fieldset>
 	</form>
 

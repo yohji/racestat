@@ -58,4 +58,4 @@ class MotecLoaderTest(TestCaseUnit):
 		fname = "data/motec.csv.gz";
 		fcsv = gzip.open(fname);
 		motec.load(fcsv);
-
+		fcsv.close();
