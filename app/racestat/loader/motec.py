@@ -22,7 +22,6 @@ from datetime import timedelta;
 from time import time;
 
 from django.db import transaction;
-from django.db import connection;
 
 from app.racestat.loader import Loader;
 from app.racestat.models import Session;
@@ -33,23 +32,30 @@ from app.racestat.models import Data;
 class MotecLoader(Loader):
 
 	session = None;
-	timelaps = list();
-
+	timelaps = None;
 	clap = None;
-	cnum = 0;
-	cclock = 1;
+	cnum = None;
+	cclock = None;
+	
+	def __init__(self, pilot, vehicle, raceway):
+		
+		Loader.__init__(self, pilot, vehicle, raceway);
+		
+		self.timelaps = list();
+		self.cnum = 0;
+		self.cclock = 1;
 
 	@transaction.commit_on_success
 	def load(self, fcsv):
 
 		timer = time();
-		rcsv = csv.reader(fcsv, delimiter=",", quotechar='"');
 		
 		self.session = Session();
 		self.session.pilot = self.pilot;
 		self.session.vehicle = self.vehicle;
 		self.session.raceway = self.raceway;
 		
+		rcsv = csv.reader(fcsv, delimiter=",", quotechar='"');
 		sdate = stime = sdur = None;
 		nline = 1;
 
@@ -84,8 +90,8 @@ class MotecLoader(Loader):
 
 		fcsv.close();
 		self.__stat_laps();
+		
 		print("loaded in %g sec" % (time() - timer));
-
 		return self.session.id;
 
 	def __load_session(self, sdate, stime, sdur):
