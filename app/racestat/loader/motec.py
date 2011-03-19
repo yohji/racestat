@@ -22,6 +22,7 @@ from datetime import timedelta;
 from time import time;
 
 from django.db import transaction;
+from django.db import connection;
 
 from app.racestat.loader import Loader;
 from app.racestat.models import Session;
@@ -62,10 +63,10 @@ class MotecLoader(Loader):
 		for line in rcsv:
 
 			if (nline == 18):
-				self.__load_session(sdate, stime, sdur);
+				self._load_session(sdate, stime, sdur);
 			
 			elif (nline >= 19):
-				self.__load_laps(line);
+				self._load_laps(line);
 			
 			else:
 				if (nline == 7):
@@ -89,19 +90,19 @@ class MotecLoader(Loader):
 			nline += 1;
 
 		fcsv.close();
-		self.__stat_laps();
+		self._stat_laps();
 		
 		print("loaded in %g sec" % (time() - timer));
 		return self.session.id;
 
-	def __load_session(self, sdate, stime, sdur):
+	def _load_session(self, sdate, stime, sdur):
 		
 		t = sdate + " " + stime;
 		self.session.date = datetime.strptime(t, "%m/%d/%y %H:%M:%S");
 		self.session.duration = timedelta(0, float(sdur));
 		self.session.save();
 
-	def __load_laps(self, line):
+	def _load_laps(self, line):
 		
 		t = float(line[0]);
 		if (t < self.cclock):
@@ -128,7 +129,7 @@ class MotecLoader(Loader):
 
 		self.cclock = t;
 
-	def __stat_laps(self):
+	def _stat_laps(self):
 		
 		cur = connection.cursor();
 		for lap in Lap.objects.filter(session=self.session):

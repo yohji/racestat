@@ -31,53 +31,40 @@
 					
 				<h1 id="logo-text"><a href="/">Racestat</a></h1>		
 				<p id="slogan">Racing telemetry statistics</p>	
-				
-				<div id="header-links">
-				<p>
-					<a href="/">Home</a> | 
-					<a href="/">Contact</a> | 
-					<a href="/">Site Map</a>			
-				</p>		
-			</div>		
-							
-		</div>
-			
-		<!-- menu -->	
-		<div  id="menu">
-			<ul>
-				<li><a href="/">Home</a></li>
-				<li><a href="/session/">Sessions</a></li>
-				<li><a href="/load/motec/">Load</a></li>
-				<li class="last"><a href="/">About</a></li>		
-			</ul>
-		</div>					
-			
-		<!-- content-wrap starts here -->
-		<div id="content-wrap">
-				
-			<div id="main">
-
-				{% block content %}{% endblock %}
-				
 			</div>
-
-		</div>
-		
-		<!--footer starts here-->
-		<div id="footer">
 			
-			<p>
-			&copy; 2011 <strong>Marco Merli</strong> | 
-			Design by: <a href="http://www.styleshout.com/">styleshout</a> | 
-			Valid <a href="http://validator.w3.org/check?uri=referer">XHTML</a> | 
-			<a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="/">Home</a>&nbsp;|&nbsp;
-			<a href="/">Sitemap</a>&nbsp;|&nbsp;
-			<a href="/">RSS Feed</a>
-			</p>
+			<!-- menu -->	
+			<div  id="menu">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/session/">Sessions</a></li>
+					<li><a href="/load/motec/">Load</a></li>
+					<li class="last"><a href="/admin/racestat/">Admin</a></li>		
+				</ul>
+			</div>					
+			
+			<!-- content-wrap starts here -->
+			<div id="content-wrap">
+					
+				<div id="main">
+					<center>
+						{% block content %}{% endblock %}
+					</center>
+				</div>
+
+			</div>
+		
+			<!--footer starts here-->
+			<div id="footer">
 				
-		</div>	
+				<p>
+					&copy; 2011 <strong>Marco Merli</strong> | 
+					Design by: <a href="http://www.styleshout.com/">styleshout</a> | 
+					Valid <a href="http://validator.w3.org/check?uri=referer">XHTML</a> | 
+					<a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a>
+				</p>
+					
+			</div>	
 
 		<!-- wrap ends here -->
 		</div>
