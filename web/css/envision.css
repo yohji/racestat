@@ -160,14 +160,14 @@ input.button {
 }
 #content-wrap {
 	width: 770px;
-	height: 500px;
+	height: 550px;
 	margin: 0 auto;
 	text-align: center;
 }
 #header {
 	width: 820px;
 	position: relative;
-	height: 103px;
+	height: 69px;
 	background: #CCC url(../images/header.jpg) no-repeat center top;
 	padding: 0;	
 	color: #FFF;	
@@ -264,7 +264,7 @@ input.button {
 
 /* Footer */	
 #footer {
-	color: #C6DDEE;
+	color: #FFF;
 	background: #CCC url(../images/footer.jpg) no-repeat center top;
 	clear: both;
 	width: 820px;
