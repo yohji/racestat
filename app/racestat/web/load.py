@@ -23,7 +23,7 @@ from django.template import RequestContext;
 from django.shortcuts import render_to_response;
 from django.shortcuts import redirect;
 
-from app.racestat.web.models import LoadForm;
+from app.racestat.web.forms import LoadForm;
 from app.racestat.loader.motec import MotecLoader;
 
 
@@ -50,8 +50,10 @@ def load_motec(request):
 			fwrite.flush();
 			
 			fread = open(fname, "rb")
-			motec.load(fread);
+			sid = motec.load(fread);
 			os.remove(fname);
+
+			return redirect("/session/%s/" % sid);
 	else:
 		form = LoadForm();
 	

@@ -27,4 +27,4 @@ class LoadForm(forms.Form):
 	pilot = forms.ModelChoiceField(queryset=Pilot.objects.all());
 	raceway = forms.ModelChoiceField(queryset=Raceway.objects.all());
 	vehicle = forms.ModelChoiceField(queryset=Vehicle.objects.all());
-	csv  = forms.FileField(required=False);
+	csv  = forms.FileField();

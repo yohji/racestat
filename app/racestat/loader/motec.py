@@ -41,7 +41,7 @@ class MotecLoader(Loader):
 
 	@transaction.commit_on_success
 	def load(self, fcsv):
-		
+
 		timer = time();
 		rcsv = csv.reader(fcsv, delimiter=",", quotechar='"');
 		
@@ -84,8 +84,9 @@ class MotecLoader(Loader):
 
 		fcsv.close();
 		self.__stat_laps();
-
 		print("loaded in %g sec" % (time() - timer));
+
+		return self.session.id;
 
 	def __load_session(self, sdate, stime, sdur):
 		
