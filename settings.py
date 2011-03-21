@@ -32,7 +32,7 @@ MANAGERS = ADMINS
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.sqlite3',
-		'NAME': 'data/racestat.db'
+		'NAME': os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data') + '/racestat.db'
 	}
 }
 
@@ -103,7 +103,7 @@ MIDDLEWARE_CLASSES = (
 	'django.middleware.transaction.TransactionMiddleware', 
 )
 
-ROOT_URLCONF = 'racestat.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
 	# Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
