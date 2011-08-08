@@ -11,38 +11,41 @@
 			); 
 		</script>
 	
-		<table id="lap_table" class="tablesorter"> 
-			<thead> 
-				<tr> 
-					<th>#</th> 
-					<th>Time</th>
-					<th>Distance</th> 
-					<th>Max speed</th> 
-					<th>Avg speed</th> 
-					<th>Max glat</th> 
-					<th>Max glon</th>  
-					<th>Avg gas</th> 
-					<th>Avg brake</th> 
-					<th>Avg gear</th> 
-				</tr> 
-			</thead> 
-			<tbody> 
-				{% for lap in lap_list %}
+		<div style="padding : 4px; width : 99%; height : 540px; overflow : auto; ">
+			<table id="lap_table" class="tablesorter"> 
+				<thead> 
 					<tr> 
-						<td>{{ lap.number }}</td>
-						<td>{{ lap.time|time:"i:s.u" }}</td>
-						<td>{{ lap.distance|floatformat:3 }}</td>
-						<td>{{ lap.max_speed|floatformat:3 }}</td>
-						<td>{{ lap.avg_speed|floatformat:3 }}</td>
-						<td>{{ lap.max_glat|floatformat:3 }}</td>
-						<td>{{ lap.max_glon|floatformat:3 }}</td>
-						<td>{{ lap.avg_gas|floatformat:3 }}</td>
-						<td>{{ lap.avg_brake|floatformat:3 }}</td>
-						<td>{{ lap.avg_gear|floatformat:3 }}</td>
-					</tr>
-				{% endfor %}
-			</tbody> 
-		</table> 
+						<th>#</th> 
+						<th>Time</th>
+						<th>Distance</th> 
+						<th>Max speed</th> 
+						<th>Avg speed</th> 
+						<th>Max glat</th> 
+						<th>Max glon</th>  
+						<th>Avg gas</th> 
+						<th>Avg brake</th> 
+						<th>Avg gear</th> 
+					</tr> 
+				</thead>
+
+				<tbody> 
+					{% for lap in lap_list %}
+						<tr> 
+							<td>{{ lap.number }}</td>
+							<td>{{ lap.time|time:"i:s.u" }}</td>
+							<td>{{ lap.distance|floatformat:3 }}</td>
+							<td>{{ lap.max_speed|floatformat:3 }}</td>
+							<td>{{ lap.avg_speed|floatformat:3 }}</td>
+							<td>{{ lap.max_glat|floatformat:3 }}</td>
+							<td>{{ lap.max_glon|floatformat:3 }}</td>
+							<td>{{ lap.avg_gas|floatformat:3 }}</td>
+							<td>{{ lap.avg_brake|floatformat:3 }}</td>
+							<td>{{ lap.avg_gear|floatformat:3 }}</td>
+						</tr>
+					{% endfor %}
+				</tbody> 
+			</table> 
+		</div>
 
 	{% else %}
 		<p>No laps are available.</p>
