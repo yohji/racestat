@@ -27,7 +27,7 @@ from app.racestat.views.forms import LoadForm
 from app.racestat.loader.netkar import NetKarLoader
 
 
-def load_motec(request):
+def load_netkar(request):
 
 	form = None
 	if (request.method == "POST"):
@@ -57,7 +57,7 @@ def load_motec(request):
 	else:
 		form = LoadForm()
 	
-	return render_to_response("racestat/load/motec.html", 
+	return render_to_response("racestat/load/netkar.html", 
 		{"form": form}, 
 		context_instance=RequestContext(request))
 

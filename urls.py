@@ -26,7 +26,7 @@ urlpatterns = patterns('app.racestat.views',
 	(r'^$', 'home.index'),
 	(r'^session/$', 'session.sessions'),
 	(r'^session/(?P<session_id>\d+)/$', 'session.laps'),
-	(r'^load/motec/$', 'load.load_motec'),
+	(r'^load/netkar/$', 'load.load_netkar'),
 
 	(r'^admin/', include(admin.site.urls)),
 	(r'^admin/doc/', include('django.contrib.admindocs.urls')),
