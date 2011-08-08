@@ -20,6 +20,10 @@
 
 import os
 
+def abspath(path):
+	return os.path.join(os.path.abspath(os.path.dirname(__file__)), path);	
+
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -32,7 +36,7 @@ MANAGERS = ADMINS
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.sqlite3',
-		'NAME': os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data') + '/racestat.db'
+		'NAME': abspath('data') + '/racestat.db'
 	}
 }
 
@@ -109,10 +113,10 @@ TEMPLATE_DIRS = (
 	# Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
 	# Always use forward slashes, even on Windows.
 	# Don't forget to use absolute paths, not relative paths.
-	os.path.join(os.path.abspath(os.path.dirname(__file__)), 'web/view'),
+	abspath('template'),
 )
 
-STATIC_DOC_ROOT = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'web')
+STATIC_DOC_ROOT = abspath('media')
 
 INSTALLED_APPS = (
 	'django.contrib.auth',

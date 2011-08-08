@@ -30,7 +30,7 @@ from app.racestat.models import Lap;
 from app.racestat.models import Data; 
 
 
-class MotecLoader(Loader):
+class NetKarLoader(Loader):
 
 	session = None;
 	timelaps = None;

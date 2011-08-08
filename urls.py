@@ -21,7 +21,7 @@ from django.contrib import admin
 from django.conf import settings
 admin.autodiscover()
 
-urlpatterns = patterns('app.racestat.web',
+urlpatterns = patterns('app.racestat.views',
 
 	(r'^$', 'home.index'),
 	(r'^session/$', 'session.sessions'),
@@ -32,6 +32,8 @@ urlpatterns = patterns('app.racestat.web',
 	(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 )
 
-urlpatterns += patterns('',
-	url(r'^(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_DOC_ROOT, 'show_indexes': True}),
-)
+if settings.DEBUG:
+	urlpatterns += patterns('',
+		(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_DOC_ROOT, 'show_indexes': True}),
+	)
+

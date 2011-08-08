@@ -18,13 +18,13 @@
 
 class Loader():
 
-	pilot = None;
-	vehicle = None;
-	raceway = None;
+	pilot = None
+	vehicle = None
+	raceway = None
 	
 	def __init__(self, pilot, vehicle, raceway):
 		
-		self.pilot = pilot;
-		self.vehicle = vehicle;
-		self.raceway = raceway;
+		self.pilot = pilot
+		self.vehicle = vehicle
+		self.raceway = raceway
 

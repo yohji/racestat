@@ -16,19 +16,19 @@
 #	Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-from django.contrib import admin;
+from django.contrib import admin
 
-from app.racestat.models import Pilot;
-from app.racestat.models import Vehicle;
-from app.racestat.models import Raceway;
-from app.racestat.models import Session;
-from app.racestat.models import Lap;
-from app.racestat.models import Data;
+from app.racestat.models import Pilot
+from app.racestat.models import Vehicle
+from app.racestat.models import Raceway
+from app.racestat.models import Session
+from app.racestat.models import Lap
+from app.racestat.models import Data
 
-admin.site.register(Pilot);
-admin.site.register(Vehicle);
-admin.site.register(Raceway);
-admin.site.register(Session);
-admin.site.register(Lap);
-admin.site.register(Data);
+admin.site.register(Pilot)
+admin.site.register(Vehicle)
+admin.site.register(Raceway)
+admin.site.register(Session)
+admin.site.register(Lap)
+admin.site.register(Data)
 

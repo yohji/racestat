@@ -16,47 +16,48 @@
 #	Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-import os;
-from time import time;
+import os
+from time import time
 
-from django.template import RequestContext;
-from django.shortcuts import render_to_response;
-from django.shortcuts import redirect;
+from django.template import RequestContext
+from django.shortcuts import render_to_response
+from django.shortcuts import redirect
 
-from app.racestat.web.forms import LoadForm;
-from app.racestat.loader.motec import MotecLoader;
+from app.racestat.views.forms import LoadForm
+from app.racestat.loader.netkar import NetKarLoader
 
 
 def load_motec(request):
 
-	form = None;
+	form = None
 	if (request.method == "POST"):
-		form = LoadForm(request.POST, request.FILES);
+		form = LoadForm(request.POST, request.FILES)
 		if (form.is_valid()):
 			
-			pilot = form.cleaned_data["pilot"];
-			vehicle = form.cleaned_data["vehicle"];
-			raceway = form.cleaned_data["raceway"];
-			motec = MotecLoader(
+			pilot = form.cleaned_data["pilot"]
+			vehicle = form.cleaned_data["vehicle"]
+			raceway = form.cleaned_data["raceway"]
+			motec = NetKarLoader(
 				pilot,
 				vehicle,
-				raceway);
+				raceway)
 			
-			ftemp = request.FILES["csv"];
-			fname = "/tmp/racestat-%s.tmp" % str(int(time()));
-			fwrite = open(fname, "wb+");
+			ftemp = request.FILES["csv"]
+			fname = "/tmp/racestat-%s.tmp" % str(int(time()))
+			fwrite = open(fname, "wb+")
 			for chunk in ftemp.chunks():
-				fwrite.write(chunk);
-			fwrite.flush();
+				fwrite.write(chunk)
+			fwrite.flush()
 			
 			fread = open(fname, "rb")
-			sid = motec.load(fread);
-			os.remove(fname);
+			sid = motec.load(fread)
+			os.remove(fname)
 
-			return redirect("/session/%s/" % sid);
+			return redirect("/session/%s/" % sid)
 	else:
-		form = LoadForm();
+		form = LoadForm()
 	
-	return render_to_response("load/motec.html", 
+	return render_to_response("racestat/load/motec.html", 
 		{"form": form}, 
-		context_instance=RequestContext(request));
+		context_instance=RequestContext(request))
+

@@ -16,19 +16,17 @@
 #	Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-from django.shortcuts import render_to_response;
+from django import forms
 
-from app.racestat.models import Session;
-from app.racestat.models import Lap;
+from app.racestat.models import Pilot
+from app.racestat.models import Raceway
+from app.racestat.models import Vehicle
 
 
-def sessions(request):
+class LoadForm(forms.Form):
 	
-	l = Session.objects.all().order_by('-date');
-	return render_to_response("session/sessions.html", {"session_list" : l});
+	pilot = forms.ModelChoiceField(queryset=Pilot.objects.all())
+	raceway = forms.ModelChoiceField(queryset=Raceway.objects.all())
+	vehicle = forms.ModelChoiceField(queryset=Vehicle.objects.all())
+	csv  = forms.FileField()
 
-
-def laps(request, session_id):
-	
-	l = Lap.objects.all().filter(session=session_id).order_by('number');
-	return render_to_response("session/laps.html", {"lap_list" : l});

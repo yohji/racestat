@@ -16,46 +16,46 @@
 #	Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-import gzip;
-from unittest2 import TestCase;
+import gzip
+from unittest2 import TestCase
 
-from app.racestat.models import Pilot;
-from app.racestat.models import Vehicle;
-from app.racestat.models import Raceway; 
-from app.racestat.loader.motec import MotecLoader;
+from app.racestat.models import Pilot
+from app.racestat.models import Vehicle
+from app.racestat.models import Raceway 
+from app.racestat.loader.netkar import NetKarLoader
 
 
 class TestCaseUnit(TestCase):
 	
-	test_pilot = None;
-	test_vehicle = None;
-	test_raceway = None;
+	test_pilot = None
+	test_vehicle = None
+	test_raceway = None
 	
 	def setUp(self):
 		
-		self.test_pilot = Pilot();
-		self.test_pilot.name = "Marco Merli";
-		self.test_pilot.save();
+		self.test_pilot = Pilot()
+		self.test_pilot.name = "Marco Merli"
+		self.test_pilot.save()
 		
-		self.test_vehicle = Vehicle();
-		self.test_vehicle.name = "F3";
-		self.test_vehicle.save();
+		self.test_vehicle = Vehicle()
+		self.test_vehicle.name = "F3"
+		self.test_vehicle.save()
 		
-		self.test_raceway = Raceway();
-		self.test_raceway.name = "Interlagos";
-		self.test_raceway.save();
+		self.test_raceway = Raceway()
+		self.test_raceway.name = "Interlagos"
+		self.test_raceway.save()
 
 
 class MotecLoaderTest(TestCaseUnit):
 	
 	def test_load(self):
 
-		motec = MotecLoader(
+		motec = NetKarLoader(
 			self.test_pilot,
 			self.test_vehicle,
-			self.test_raceway);
+			self.test_raceway)
 			
-		fname = "data/motec.csv.gz";
-		fcsv = gzip.open(fname);
-		motec.load(fcsv);
-		fcsv.close();
+		fname = "data/motec.csv.gz"
+		fcsv = gzip.open(fname)
+		motec.load(fcsv)
+		fcsv.close()

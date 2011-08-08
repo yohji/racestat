@@ -16,9 +16,9 @@
 #	Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-from django.shortcuts import render_to_response;
+from django.shortcuts import render_to_response
 
 
 def index(request):
 
-	return render_to_response("home.html");
+	return render_to_response("racestat/home.html")
